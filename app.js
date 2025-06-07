@@ -31,9 +31,14 @@ store.on('error',function(error){
     console.log(error);
 })
 
-mongoose.connect(dbUrl)
-    .then(() => console.log('Database connected'))
-    .catch(err => console.log('Connection error:', err));
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  tls: true,
+})
+.then(() => console.log('Database connected'))
+.catch(err => console.log('Connection error:', err));
+
 
 const app = express();
 
